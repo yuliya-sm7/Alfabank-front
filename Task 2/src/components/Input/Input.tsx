@@ -15,7 +15,7 @@ const Input: React.FC<{
         if (e.target.name == "name") {
             edit({name: e.target.value, price: item.price});
         } else if (e.target.name == "price") {
-            edit({name: item.name, price: Number(e.target.value)});
+            edit({name: item.name, price: e.target.value});
         }
     };
 
@@ -26,7 +26,7 @@ const Input: React.FC<{
         } else {
             add(item);
         }
-        edit({name: "", price: 1});
+        edit({name: "", price: NaN});
     };
 
     return (

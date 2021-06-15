@@ -19,3 +19,13 @@ export const removeItem = (id: string) => ({
     type: "REMOVE_ITEM",
     id: id
 });
+
+export const changeItem = (id: string) => ({
+    type: "CHANGE_ITEM",
+    id: id
+});
+
+export const modal = (isOpen: boolean) => ({
+    type: "MODAL",
+    payload: isOpen
+});
