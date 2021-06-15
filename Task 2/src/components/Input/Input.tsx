@@ -1,21 +1,32 @@
 import React from "react";
+import {connect} from "react-redux";
+import {editItem, addToItems} from "../../redux/action";
 interface Item {
     name: string;
     price: number;
-    id: string;
 }
 
 const Input: React.FC<{
     item: Item;
-    handleSubmit: (event) => void;
-    setItem: (item: Item) => void;
-}> = ({item, handleSubmit, setItem}) => {
+    edit: (item: Item) => void;
+    add: (item: Item) => void;
+}> = ({item, edit, add}) => {
     const handleChange = (e) => {
         if (e.target.name == "name") {
-            setItem({id: item.id, name: e.target.value, price: item.price});
+            edit({name: e.target.value, price: item.price});
         } else if (e.target.name == "price") {
-            setItem({id: item.id, name: item.name, price: e.target.value});
+            edit({name: item.name, price: Number(e.target.value)});
         }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!item.name || !item.price || !Number(item.price)) {
+            alert("Error!");
+        } else {
+            add(item);
+        }
+        edit({name: "", price: 1});
     };
 
     return (
@@ -41,4 +52,11 @@ const Input: React.FC<{
     );
 };
 
-export default Input;
+const mapDispatchToProps = (dispatch) => ({
+    edit: (obj) => dispatch(editItem(obj)),
+    add: (obj) => dispatch(addToItems(obj))
+});
+const mapStateToProps = ({item}) => ({
+    item
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Input);

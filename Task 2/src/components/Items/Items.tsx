@@ -1,4 +1,7 @@
 import React from "react";
+import {connect} from "react-redux";
+import {removeItem} from "../../redux/action";
+
 interface Item {
     name: string;
     price: number;
@@ -7,13 +10,8 @@ interface Item {
 
 const Items: React.FC<{
     list: Array<Item>;
-    setList: (list: Array<Item>) => void;
-    edit: (id: string) => void;
-}> = ({list, setList, edit}) => {
-    const remove = (id) => {
-        setList(list.filter((el) => el.id !== id));
-    };
-
+    remove: (id: string) => void;
+}> = ({list, remove}) => {
     return (
         <div className="items">
             <table>
@@ -29,9 +27,9 @@ const Items: React.FC<{
                             <tr key={id}>
                                 <td>{c.name}</td>
                                 <td>{c.price}</td>
-                                <td>
+                                {/* <td>
                                     <button onClick={() => edit(c.id)}> ✏️ </button>{" "}
-                                </td>
+                                </td>*/}
                                 <td>
                                     <button onClick={() => remove(c.id)}> ❌ </button>
                                 </td>
@@ -53,4 +51,13 @@ const Items: React.FC<{
         </div>
     );
 };
-export default Items;
+
+const mapStateToProps = (state) => ({
+    list: state.items
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    remove: (obj) => dispatch(removeItem(obj))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Items);
