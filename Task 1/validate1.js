@@ -1,10 +1,16 @@
+// второй вариант решения
 function solution(str) {
-  const brackets = { "{": "}", "(": ")", "[": "]" };
-  let stack = []; // в стек помещаются закрывающие скобки
+  let stack = [];
+  let opening = "([{";
+  let closing = ")]}";
+
   for (const c of str) {
-    if (brackets[c]) stack.push(brackets[c]);
-    else if (c == "}" || c == ")" || c == "]") {
-      if (stack.pop() != c) {
+    if (opening.includes(c)) {
+      stack.push(c);
+    } else if (closing.includes(c)) {
+      if (stack.length == 0) {
+        return false;
+      } else if (closing.indexOf(c) != opening.indexOf(stack.pop())) {
         return false;
       }
     }
