@@ -16,13 +16,13 @@ const Items: React.FC<{
                     <tr>
                         <th className="col-7">
                             Название
-                            <a onClick={() => sort("name", true)}>🔼</a>
-                            <a onClick={() => sort("name", false)}>🔽</a>
+                            <a onClick={() => sort("name", true)}> 🔼 </a>
+                            <a onClick={() => sort("name", false)}> 🔽 </a>
                         </th>
                         <th className="col-3">
                             Цена
-                            <a onClick={() => sort("price", true)}>🔼</a>
-                            <a onClick={() => sort("price", false)}>🔽</a>
+                            <a onClick={() => sort("price", true)}> 🔼 </a>
+                            <a onClick={() => sort("price", false)}> 🔽 </a>
                         </th>
                         <th className="col-1"></th>
                         <th className="col-1"></th>
