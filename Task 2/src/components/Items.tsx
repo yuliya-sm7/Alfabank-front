@@ -16,37 +16,13 @@ const Items: React.FC<{
                     <tr>
                         <th className="col-7">
                             Название
-                            <button
-                                className="btn btn-link btn-sm"
-                                onClick={() => sort("name", true)}
-                            >
-                                {" "}
-                                🔼{" "}
-                            </button>
-                            <button
-                                className="btn btn-link btn-sm"
-                                onClick={() => sort("name", false)}
-                            >
-                                {" "}
-                                🔽{" "}
-                            </button>
+                            <a onClick={() => sort("name", true)}>🔼</a>
+                            <a onClick={() => sort("name", false)}>🔽</a>
                         </th>
                         <th className="col-3">
                             Цена
-                            <button
-                                className="btn btn-link btn-sm"
-                                onClick={() => sort("price", true)}
-                            >
-                                {" "}
-                                🔼{" "}
-                            </button>
-                            <button
-                                className="btn btn-link btn-sm"
-                                onClick={() => sort("price", false)}
-                            >
-                                {" "}
-                                🔽{" "}
-                            </button>
+                            <a onClick={() => sort("price", true)}>🔼</a>
+                            <a onClick={() => sort("price", false)}>🔽</a>
                         </th>
                         <th className="col-1"></th>
                         <th className="col-1"></th>

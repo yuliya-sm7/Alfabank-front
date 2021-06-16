@@ -16,7 +16,7 @@ const App: React.FC = () => {
                     <div className="col-8">
                         <Input />
                     </div>
-                    <div className="col">
+                    <div className="col-4">
                         <button
                             className="d-inline-block btn btn-secondary"
                             onClick={() => setScan(!scan)}
@@ -29,7 +29,7 @@ const App: React.FC = () => {
                     <div className="col-8">
                         <Items />
                     </div>
-                    <div className="col"> {scan ? <Barcode /> : null}</div>
+                    <div className="col-4"> {scan ? <Barcode /> : null}</div>
                 </div>
             </div>
             <MyModal />
