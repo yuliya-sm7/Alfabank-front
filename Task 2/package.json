@@ -48,7 +48,6 @@
     "react-qr-barcode-scanner": "^1.0.6",
     "react-redux": "^7.2.4",
     "redux-logger": "^3.0.6",
-    "styled-components": "^5.2.1",
     "uuid": "^8.3.2"
   }
 }
