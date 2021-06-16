@@ -9,6 +9,12 @@ export const editItem = (obj: Item) => ({
     payload: obj
 });
 
+export const sorting = (field: string, increase: boolean) => ({
+    type: "SORT",
+    field: field,
+    increase: increase
+});
+
 export const addToItems = (obj: Item, id: string) => ({
     type: "ADD_TO_ITEMS",
     id: id ? id : uuidv4(),

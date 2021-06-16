@@ -23,7 +23,8 @@ const Input: React.FC<{
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!item.name || !item.price || !Number(item.price)) {
+        item.price = Number(item.price);
+        if (!item.name || !item.price || item.price < 0) {
             alert("Error!");
         } else {
             add(item, id);
