@@ -2,10 +2,9 @@ import React, {useState} from "react";
 import Items from "./components/Items";
 import Input from "components/Input";
 import Barcode from "components/Barcode";
-import Modal from "react-modal";
-import {connect} from "react-redux";
+import MyModal from "components/MyModal";
 
-const App: React.FC<{modalIsOpen: boolean}> = ({modalIsOpen}) => {
+const App: React.FC = () => {
     const [scan, setScan] = useState(false);
     return (
         <div className="App">
@@ -33,16 +32,9 @@ const App: React.FC<{modalIsOpen: boolean}> = ({modalIsOpen}) => {
                     <div className="col"> {scan ? <Barcode /> : null}</div>
                 </div>
             </div>
-            <Modal isOpen={modalIsOpen} ariaHideApp={false}>
-                <h3>Редактирование</h3>
-                <Input />
-            </Modal>
+            <MyModal />
         </div>
     );
 };
 
-const mapStateToProps = ({modalIsOpen}) => ({
-    modalIsOpen
-});
-
-export default connect(mapStateToProps, null)(App);
+export default App;
