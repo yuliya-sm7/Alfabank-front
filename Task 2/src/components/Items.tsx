@@ -1,51 +1,55 @@
 import React from "react";
 import {connect} from "react-redux";
-import {removeItem, changeItem} from "../../redux/action";
+import {removeItem, changeItem} from "../redux/action";
 
 interface Item {
     name: string;
     price: number;
-    id: string;
 }
 
 const Items: React.FC<{
     list: Array<Item>;
+    ids: Array<string>;
     change: (id: string) => void;
     remove: (id: string) => void;
-}> = ({list, change, remove}) => {
+}> = ({list, ids, change, remove}) => {
     return (
         <div className="items">
-            <table>
+            <table className="table table-striped table-responsive-sm">
                 <thead>
                     <tr>
-                        <th>Название</th>
-                        <th>Цена</th>
+                        <th className="col-7">Название</th>
+                        <th className="col-3">Цена</th>
+                        <th className="col-1"></th>
+                        <th className="col-1"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {list.map((c, id) => {
+                    {list.map((c, index) => {
                         return (
-                            <tr key={id}>
+                            <tr key={index}>
                                 <td>{c.name}</td>
                                 <td>{c.price}</td>
                                 <td>
-                                    <button onClick={() => change(c.id)}> ✏️ </button>{" "}
+                                    <button onClick={() => change(ids[index])}> ✏️ </button>
                                 </td>
                                 <td>
-                                    <button onClick={() => remove(c.id)}> ❌ </button>
+                                    <button onClick={() => remove(ids[index])}> ❌ </button>
                                 </td>
                             </tr>
                         );
                     })}
                 </tbody>
                 <tfoot>
-                    <tr>
+                    <tr className="table-info">
                         <td>СУММА</td>
                         <td>
                             {list.reduce(function (acc: number, cur: Item) {
                                 return acc + Number(cur.price);
                             }, 0)}
                         </td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </tfoot>
             </table>
@@ -54,7 +58,8 @@ const Items: React.FC<{
 };
 
 const mapStateToProps = (state) => ({
-    list: state.items
+    list: Object.values(state.items),
+    ids: Object.keys(state.items)
 });
 
 const mapDispatchToProps = (dispatch) => ({

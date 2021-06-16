@@ -10,8 +10,6 @@ const Barcode: React.FC<{edit: (name: string) => void; window: (isOpen: boolean)
     return (
         <>
             <BarcodeScannerComponent
-                width={300}
-                height={300}
                 onUpdate={(err, result) => {
                     if (result) {
                         window(true);

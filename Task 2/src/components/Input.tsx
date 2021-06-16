@@ -1,6 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
-import {editItem, addToItems} from "../../redux/action";
+import {editItem, addToItems} from "../redux/action";
+
 interface Item {
     name: string;
     price: number;
@@ -8,9 +9,10 @@ interface Item {
 
 const Input: React.FC<{
     item: Item;
+    id: string;
     edit: (item: Item) => void;
-    add: (item: Item) => void;
-}> = ({item, edit, add}) => {
+    add: (item: Item, id: string) => void;
+}> = ({item, id, edit, add}) => {
     const handleChange = (e) => {
         if (e.target.name == "name") {
             edit({name: e.target.value, price: item.price});
@@ -24,14 +26,15 @@ const Input: React.FC<{
         if (!item.name || !item.price || !Number(item.price)) {
             alert("Error!");
         } else {
-            add(item);
+            add(item, id);
         }
         edit({name: "", price: NaN});
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="form-row" onSubmit={handleSubmit}>
             <input
+                className="form-control col-7"
                 name="name"
                 type="text"
                 value={item.name}
@@ -39,24 +42,26 @@ const Input: React.FC<{
                 onChange={handleChange}
             />
             <input
+                className="form-control col-3"
                 name="price"
                 type="number"
                 value={item.price}
                 placeholder="Price"
                 onChange={handleChange}
             />
-            <button type="submit">Добавить</button>
-            <br></br>
-            <br></br>
+            <button type="submit" className="btn btn-info col-2">
+                Добавить
+            </button>
         </form>
     );
 };
 
 const mapDispatchToProps = (dispatch) => ({
     edit: (obj) => dispatch(editItem(obj)),
-    add: (obj) => dispatch(addToItems(obj))
+    add: (obj, id) => dispatch(addToItems(obj, id))
 });
-const mapStateToProps = ({item}) => ({
-    item
+const mapStateToProps = ({item, id}) => ({
+    item,
+    id
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Input);

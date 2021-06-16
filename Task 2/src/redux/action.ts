@@ -9,9 +9,9 @@ export const editItem = (obj: Item) => ({
     payload: obj
 });
 
-export const addToItems = (obj: Item) => ({
+export const addToItems = (obj: Item, id: string) => ({
     type: "ADD_TO_ITEMS",
-    id: uuidv4(),
+    id: id ? id : uuidv4(),
     payload: obj
 });
 
